@@ -8,7 +8,7 @@ export default {
   id: "jobs",
   form: "Form 18-J",
   kicker: "Office of Assignment",
-  titleHtml: "Which job would you have <em>in the Silo?</em>",
+  titleHtml: "Which job<br>would you have <em>in the Silo?</em>",
   intro: "Every resident shadows a trade. Answer twelve questions from life on the stairs and the Office of Assignment will place you, from the top of the silo to the bottom.",
   cutoff: "Safe to the end of season 3",
   shareText: (d) => `The Office of Assignment has placed me in ${d.name}. Which job would you have in the Silo?`,

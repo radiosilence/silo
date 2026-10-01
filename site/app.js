@@ -351,7 +351,15 @@ $("#retake").addEventListener("click", start);
 $("#share").addEventListener("click", share);
 $("#to-title").addEventListener("click", () => { history.replaceState(null, "", location.pathname); renderTitle(); show("title"); });
 window.addEventListener("hashchange", route);
+document.addEventListener("keydown", (e) => {
+  if (document.body.dataset.screen !== "quiz" || e.metaKey || e.ctrlKey || e.altKey) return;
+  const j = "1234".indexOf(e.key) >= 0 ? "1234".indexOf(e.key) : "abcd".indexOf(e.key.toLowerCase());
+  if (j >= 0) document.querySelector(`.qcard:not(.leaving) .opt[data-i="${j}"]`)?.click();
+  else if (e.key === "Backspace") back();
+});
+
+// Hold the stencil headings back until their font arrives, so they never flash in a fallback face.
+Promise.race([document.fonts?.ready, wait(1500)]).then(() => document.body.classList.add("fonts"));
 $("#treads").innerHTML = stairwell();
 renderMute();
 route();
-document.body.classList.add("ready");

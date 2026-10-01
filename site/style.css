@@ -68,6 +68,7 @@ body::before {
 }
 
 [hidden] { display: none !important; }
+body:not(.fonts) :is(h1, .notice h2, .second b) { visibility: hidden; }
 
 .screen {
   position: fixed;
@@ -293,9 +294,9 @@ h1 em { font-style: normal; color: var(--sodium); display: block; font-size: 1.3
 .shaft .treads {
   position: absolute;
   inset: 0 0 auto;
-  height: calc(100% + 4200px);
+  height: calc(100% + 5400px);
   opacity: .55;
-  transform: translateY(calc(var(--depth) * -340px));
+  transform: translateY(calc(var(--depth) * -440px));
   transition: transform 1.1s cubic-bezier(.45, 0, .2, 1);
 }
 .shaft .treads svg { display: block; }
