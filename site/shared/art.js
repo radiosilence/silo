@@ -12,50 +12,50 @@ const polar = (cx, cy, r, deg) => {
 };
 
 // The great stair seen from the top landing: rings of walkway falling away into the dark,
-// with treads running round each turn and sodium lamps on the railings.
+// with treads running round each turn and sodium lamps on the railings. The rings are one
+// static SVG inside an HTML layer, so the slow rotation is composited rather than redrawn;
+// the pit and haze are CSS gradients on the non-rotating wrapper.
 export function staircase() {
-  const cx = 300, cy = 250;
-  const [glow, pit, haze] = [uid("glow"), uid("pit"), uid("haze")];
+  const glow = uid("glow");
   let rings = "";
-  for (let k = 0; k < 11; k++) {
-    const ro = 330 * 0.79 ** k;
+  for (let k = 0; k < 8; k++) {
+    const ro = 340 * 0.78 ** k;
     const ri = ro * 0.8;
-    const shade = Math.round(58 - k * 5);
-    const fill = `rgb(${shade},${shade - 3},${shade - 9})`;
+    const shade = Math.round(58 - k * 6);
     const offset = k * 47;
     let treads = "";
-    const n = 40;
+    const n = 26;
     for (let t = 0; t < n * 0.62; t++) {
       const deg = offset + (t * 360) / n;
-      const [x1, y1] = polar(cx, cy, ri + 1, deg);
-      const [x2, y2] = polar(cx, cy, ro - 1, deg);
+      const [x1, y1] = polar(0, 0, ri + 1, deg);
+      const [x2, y2] = polar(0, 0, ro - 1, deg);
       treads += `M${f(x1)} ${f(y1)}L${f(x2)} ${f(y2)}`;
     }
     let lamps = "";
-    for (let l = 0; l < 3; l++) {
-      const [x, y] = polar(cx, cy, ri, offset + 70 + l * 120);
-      const r = Math.max(1.2, 5 * 0.82 ** k);
-      lamps += `<g class="lamp" style="--i:${k * 3 + l}"><circle cx="${f(x)}" cy="${f(y)}" r="${f(r * 7)}" fill="url(#${glow})"/><circle cx="${f(x)}" cy="${f(y)}" r="${f(r)}" fill="#ffd583"/></g>`;
+    if (k < 6) {
+      for (let l = 0; l < 2; l++) {
+        const [x, y] = polar(0, 0, ri, offset + 70 + l * 180);
+        const r = Math.max(1.4, 5 * 0.82 ** k);
+        lamps += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(r * 4.5)}" fill="url(#${glow})"/><circle cx="${f(x)}" cy="${f(y)}" r="${f(r)}" fill="#ffd583"/>`;
+      }
     }
-    rings += `<g>
-      <circle cx="${cx}" cy="${cy}" r="${f((ro + ri) / 2)}" fill="none" stroke="${fill}" stroke-width="${f(ro - ri)}"/>
+    rings += `
+      <circle r="${f((ro + ri) / 2)}" fill="none" stroke="rgb(${shade},${shade - 3},${shade - 9})" stroke-width="${f(ro - ri)}"/>
       <path d="${treads}" stroke="rgba(0,0,0,.55)" stroke-width="${f(Math.max(.6, 2.2 * 0.85 ** k))}"/>
-      <circle cx="${cx}" cy="${cy}" r="${f(ri)}" fill="none" stroke="#8a7a5c" stroke-opacity="${f(.55 - k * .04)}" stroke-width="${f(Math.max(.5, 2 * 0.85 ** k))}"/>
-      <circle cx="${cx}" cy="${cy}" r="${f(ri - 3 * 0.8 ** k)}" fill="none" stroke="#000" stroke-opacity=".5" stroke-width="${f(Math.max(.5, 4 * 0.8 ** k))}"/>
-      ${lamps}
-    </g>`;
+      <circle r="${f(ri)}" fill="none" stroke="#8a7a5c" stroke-opacity="${f(.55 - k * .05)}" stroke-width="${f(Math.max(.6, 2 * 0.85 ** k))}"/>
+      ${lamps}`;
   }
-  return `<svg viewBox="0 0 600 500" preserveAspectRatio="xMidYMin slice" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <radialGradient id="${glow}"><stop offset="0" stop-color="#f2a93b" stop-opacity=".55"/><stop offset="1" stop-color="#f2a93b" stop-opacity="0"/></radialGradient>
-      <radialGradient id="${pit}"><stop offset="0" stop-color="#000"/><stop offset=".6" stop-color="#000" stop-opacity=".6"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
-      <radialGradient id="${haze}" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#f2a93b" stop-opacity=".18"/><stop offset="1" stop-color="#f2a93b" stop-opacity="0"/></radialGradient>
-    </defs>
-    <rect width="600" height="500" fill="#0d0c0a"/>
-    <g class="spin">${rings}</g>
-    <circle cx="${cx}" cy="${cy}" r="70" fill="url(#${pit})"/>
-    <circle cx="${cx}" cy="${cy}" r="300" fill="url(#${haze})"/>
-  </svg>`;
+  return `<div class="stair-spin"><svg viewBox="-360 -360 720 720" xmlns="http://www.w3.org/2000/svg">
+    <defs><radialGradient id="${glow}"><stop offset="0" stop-color="#f2a93b" stop-opacity=".5"/><stop offset="1" stop-color="#f2a93b" stop-opacity="0"/></radialGradient></defs>
+    ${rings}
+  </svg></div>`;
+}
+
+// Stop the stair turning while the tab is in the background.
+export function pauseWhenHidden() {
+  const sync = () => document.documentElement.classList.toggle("hidden-page", document.hidden);
+  document.addEventListener("visibilitychange", sync);
+  sync();
 }
 
 // Riveted octagonal plate in the department colour, with the emblem and short code stencilled on.

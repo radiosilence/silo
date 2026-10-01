@@ -1,4 +1,4 @@
-import { staircase, insignia, cardBack } from "./shared/art.js";
+import { staircase, insignia, cardBack, pauseWhenHidden } from "./shared/art.js";
 import { idCard } from "./shared/portraits.js";
 import { sitter } from "./shared/characters.js";
 import role from "./role/data.js";
@@ -13,5 +13,6 @@ const ART = {
 };
 
 document.getElementById("hub-art").innerHTML = staircase();
+pauseWhenHidden();
 for (const el of document.querySelectorAll("[data-art]")) el.innerHTML = ART[el.dataset.art];
 Promise.race([document.fonts?.ready, new Promise((r) => setTimeout(r, 1500))]).then(() => document.body.classList.add("fonts"));

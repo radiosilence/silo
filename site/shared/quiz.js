@@ -1,6 +1,6 @@
 // Quiz engine. Knows nothing about any particular quiz: everything shown comes from the quiz
 // object passed to run(), defined in a data module next to each quiz page.
-import { staircase, stairwell, stamp } from "./art.js";
+import { staircase, stairwell, stamp, pauseWhenHidden } from "./art.js";
 import { sfx, buzz, prefs, savePrefs, muteButtons } from "./sound.js";
 
 const $ = (s) => document.querySelector(s);
@@ -16,10 +16,9 @@ const ICONS = {
 };
 
 const markup = (quiz) => `
-  <div class="lights" aria-hidden="true"></div>
 
   <main id="title" class="screen">
-    <div class="title-art" id="title-art" aria-hidden="true"></div>
+    <div class="stairs title-art" id="title-art" aria-hidden="true"></div>
     <a class="back" href="../">All games</a>
     <div class="title-inner">
       <p class="kicker">${quiz.kicker}</p>
@@ -173,6 +172,18 @@ export function run(quiz) {
     $(`#${id}`).scrollTop = 0;
   };
 
+  // The stairwell tile repeats every 440px, so each step is one tile: snap back a tile with no
+  // transition, then glide one tile on. The layer never grows beyond a screen plus a tile.
+  function shift(dir) {
+    const el = $("#treads");
+    el.style.transition = "none";
+    el.style.transform = `translateY(${dir > 0 ? 0 : -440}px)`;
+    if (!dir || reduced.matches) return;
+    void el.offsetWidth;
+    el.style.transition = "";
+    el.style.transform = `translateY(${dir > 0 ? -440 : 0}px)`;
+  }
+
   function renderTitle() {
     $("#title-art").innerHTML = staircase();
     const last = decode(quiz, prefs.last?.[quiz.id] ?? "");
@@ -194,7 +205,7 @@ export function run(quiz) {
     picks = [];
     history.replaceState(null, "", location.pathname);
     show("quiz");
-    $("#shaft").style.setProperty("--depth", 0);
+    shift(0);
     renderQuestion(0, true);
   }
 
@@ -241,7 +252,7 @@ export function run(quiz) {
     buzz(8);
     await pause(480);
     if (i + 1 < quiz.questions.length) {
-      $("#shaft").style.setProperty("--depth", i + 1);
+      shift(1);
       if (!reduced.matches) [0, 140, 280].forEach((t) => setTimeout(sfx.step, t));
       renderQuestion(i + 1);
       await pause(900);
@@ -254,7 +265,7 @@ export function run(quiz) {
   function back() {
     if (busy || at === 0) return;
     picks.length = at - 1;
-    $("#shaft").style.setProperty("--depth", at - 1);
+    shift(-1);
     renderQuestion(at - 1);
   }
 
@@ -358,5 +369,6 @@ export function run(quiz) {
   // Hold the stencil headings back until their font arrives, so they never flash in a fallback face.
   Promise.race([document.fonts?.ready, wait(1500)]).then(() => document.body.classList.add("fonts"));
   $("#treads").innerHTML = stairwell();
+  pauseWhenHidden();
   route();
 }

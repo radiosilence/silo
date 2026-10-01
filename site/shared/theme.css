@@ -54,19 +54,39 @@ body::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Sodium lamps that occasionally falter, as they do in the stairwell. */
-.lights {
-  position: fixed;
-  inset: 0;
+/* ---------- The great stair (title and hub art) ---------- */
+
+.stairs {
+  position: absolute;
+  inset: 0 0 auto;
+  overflow: hidden;
   pointer-events: none;
-  z-index: 40;
-  animation: flicker 9s steps(1) infinite;
+  -webkit-mask-image: linear-gradient(#000 45%, transparent);
+  mask-image: linear-gradient(#000 45%, transparent);
 }
-@keyframes flicker {
-  0%, 61%, 63.5%, 65%, 100% { background-color: transparent; }
-  62%, 64% { background-color: rgba(0, 0, 0, .3); }
-  63% { background-color: rgba(0, 0, 0, .12); }
+/* The rotating layer is a square centred on the stair well, so its corners never show. */
+.stair-spin {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: max(125vw, 125vh, 760px);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  will-change: transform;
+  animation: spin 160s linear infinite;
 }
+.stair-spin svg { display: block; width: 100%; height: 100%; }
+.stairs::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 46%, #000 0, rgba(0, 0, 0, .6) 6%, transparent 14%),
+    radial-gradient(circle at 50% 46%, rgba(242, 169, 59, .16), transparent 45%);
+}
+@keyframes spin { to { transform: rotate(-360deg); } }
+.hidden-page .stair-spin { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .stair-spin { animation: none; } }
 
 [hidden] { display: none !important; }
 body:not(.fonts) :is(h1, .notice h2, .second b) { visibility: hidden; }
@@ -213,5 +233,4 @@ body:not(.fonts) :is(h1, .notice h2, .second b) { visibility: hidden; }
     animation-iteration-count: 1 !important;
     transition-duration: .001ms !important;
   }
-  .lights { animation: none; }
 }

@@ -1,17 +1,6 @@
 body { height: auto; min-height: 100%; overflow-y: auto; overflow-x: hidden; }
 
-.hub-art {
-  position: absolute;
-  inset: 0 0 auto;
-  height: min(78vh, 720px);
-  overflow: hidden;
-  pointer-events: none;
-  -webkit-mask-image: linear-gradient(#000 40%, transparent);
-  mask-image: linear-gradient(#000 40%, transparent);
-}
-.hub-art svg { width: max(100%, 560px); height: 100%; display: block; margin: 0 auto; }
-.hub-art .spin { transform-origin: 300px 250px; animation: spin 140s linear infinite; }
-@keyframes spin { to { transform: rotate(-360deg); } }
+.hub-art { height: min(78vh, 720px); }
 
 .hub {
   position: relative;
