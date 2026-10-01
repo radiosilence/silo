@@ -165,6 +165,7 @@ export function run(quiz) {
   let picks = [];
   let busy = false;
   let at = 0;
+  const run = { token: 0 };
 
   const show = (id) => {
     for (const s of ["title", "quiz", "result"]) $(`#${s}`).hidden = s !== id;
@@ -196,6 +197,8 @@ export function run(quiz) {
   }
 
   function toTitle() {
+    run.token++;
+    busy = false;
     history.replaceState(null, "", location.pathname);
     renderTitle();
     show("title");
@@ -203,16 +206,37 @@ export function run(quiz) {
 
   function start() {
     picks = [];
+    busy = false;
     history.replaceState(null, "", location.pathname);
     show("quiz");
     shift(0);
     renderQuestion(0, true);
   }
 
-  function renderQuestion(i, first = false) {
+  // One card at a time: the old card animates out and is removed before the next one is
+  // inserted, so two cards never share the deck, and the deck is inert while either moves.
+  const animated = (el, name) => new Promise((resolve) => {
+    if (reduced.matches) return resolve();
+    const done = () => { clearTimeout(timer); el.removeEventListener("animationend", onEnd); resolve(); };
+    const onEnd = (e) => e.target === el && done();
+    const timer = setTimeout(done, 900);
+    el.addEventListener("animationend", onEnd);
+    el.classList.add(name);
+  });
+
+  async function renderQuestion(i, first = false) {
+    const token = ++run.token;
     at = i;
     const q = quiz.questions[i];
     const n = quiz.questions.length;
+    const deck = $("#deck");
+    deck.inert = true;
+
+    const old = deck.querySelector(".qcard");
+    if (old && !first) await animated(old, "leaving");
+    if (token !== run.token) return;
+    deck.replaceChildren();
+    deck.scrollTop = 0;
     $("#q-num").textContent = `${pad(i + 1, 2)} / ${pad(n, 2)}`;
     $("#level").textContent = pad(q.level);
     $("#gauge-ticks").innerHTML = quiz.questions.map((_, j) => `<i class="${j < i ? "done" : j === i ? "now" : ""}"></i>`).join("");
@@ -221,7 +245,7 @@ export function run(quiz) {
     const card = document.createElement("article");
     card.className = "qcard";
     card.innerHTML = `
-      <header><span class="q-tag">Section ${String.fromCharCode(65 + i)}</span><span class="q-loc">${q.where}</span></header>
+      <header><span class="q-tag">Section ${String.fromCharCode(65 + (i % 26))}</span><span class="q-loc">${q.where}</span></header>
       <h2 id="q-text-${i}">${q.text}</h2>
       <div class="options" role="radiogroup" aria-labelledby="q-text-${i}">
         ${q.options.map((o, j) => `
@@ -231,42 +255,41 @@ export function run(quiz) {
             <span class="txt">${o.text}</span>
           </button>`).join("")}
       </div>`;
-    const deck = $("#deck");
-    for (const old of deck.querySelectorAll(".qcard:not(.leaving)")) {
-      old.classList.add("leaving");
-      setTimeout(() => old.remove(), reduced.matches ? 0 : 600);
-    }
-    if (!first) card.classList.add("entering");
-    deck.append(card);
     card.querySelectorAll(".opt").forEach((b) => b.addEventListener("click", () => choose(i, Number(b.dataset.i), b)));
+    deck.append(card);
+    if (!first) await animated(card, "entering");
+    if (token !== run.token) return;
+    deck.inert = false;
   }
 
   async function choose(i, j, btn) {
-    if (busy) return;
+    if (busy || i !== at) return;
     busy = true;
     picks[i] = j;
     picks.length = i + 1;
     btn.closest(".options").querySelectorAll(".opt").forEach((b) => b.setAttribute("aria-checked", String(b === btn)));
     btn.classList.add("picked");
+    $("#deck").inert = true;
     sfx.tick();
     buzz(8);
-    await pause(480);
+    await pause(380);
     if (i + 1 < quiz.questions.length) {
       shift(1);
       if (!reduced.matches) [0, 140, 280].forEach((t) => setTimeout(sfx.step, t));
-      renderQuestion(i + 1);
-      await pause(900);
+      await renderQuestion(i + 1);
     } else {
       await finish();
     }
     busy = false;
   }
 
-  function back() {
+  async function back() {
     if (busy || at === 0) return;
+    busy = true;
     picks.length = at - 1;
     shift(-1);
-    renderQuestion(at - 1);
+    await renderQuestion(at - 1);
+    busy = false;
   }
 
   async function finish() {
@@ -348,6 +371,9 @@ export function run(quiz) {
 
   function route() {
     const r = decode(quiz, location.hash);
+    if (!r && document.body.dataset.screen === "quiz") return;
+    run.token++;
+    busy = false;
     renderTitle();
     if (r) renderResult(r, prefs.last?.[quiz.id] !== location.hash);
     else show("title");
@@ -360,9 +386,9 @@ export function run(quiz) {
   $("#share").addEventListener("click", share);
   window.addEventListener("hashchange", route);
   document.addEventListener("keydown", (e) => {
-    if (document.body.dataset.screen !== "quiz" || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (document.body.dataset.screen !== "quiz" || e.repeat || e.metaKey || e.ctrlKey || e.altKey) return;
     const j = Math.max("1234".indexOf(e.key), "abcd".indexOf(e.key.toLowerCase()));
-    if (e.key.length === 1 && j >= 0) document.querySelector(`.qcard:not(.leaving) .opt[data-i="${j}"]`)?.click();
+    if (e.key.length === 1 && j >= 0 && !$("#deck").inert) document.querySelector(`.qcard .opt[data-i="${j}"]`)?.click();
     else if (e.key === "Backspace") back();
   });
 

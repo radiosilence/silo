@@ -194,8 +194,8 @@ h1 em { font-style: normal; color: var(--sodium); display: block; font-size: 1.3
   padding: 16px 14px 14px;
   box-shadow: 0 2px 0 var(--paper-3), 0 22px 44px rgba(0, 0, 0, .6);
 }
-.qcard.entering { animation: card-in .6s var(--ease) both .42s; }
-.qcard.leaving { animation: card-out .42s cubic-bezier(.55, 0, .8, .3) both; pointer-events: none; }
+.qcard.entering { animation: card-in .55s var(--ease) both; }
+.qcard.leaving { animation: card-out .34s cubic-bezier(.55, 0, .8, .3) both; }
 @keyframes card-in { from { opacity: 0; transform: translateY(120px) rotate(1deg) scale(.97); } }
 @keyframes card-out { to { opacity: 0; transform: translateY(-160px) rotate(-1.5deg) scale(.96); } }
 .qcard header {
@@ -234,9 +234,7 @@ h1 em { font-style: normal; color: var(--sodium); display: block; font-size: 1.3
   cursor: pointer;
   transition: background .15s, border-color .15s, transform .15s var(--ease);
 }
-.qcard.entering .opt { animation: opt-in .45s var(--ease) both; animation-delay: calc(.62s + var(--d) * .06s); }
-@keyframes opt-in { from { opacity: 0; transform: translateY(8px); } }
-.opt:hover { background: rgba(255, 255, 255, .5); border-color: rgba(30, 27, 22, .45); }
+@media (hover: hover) { .opt:hover { background: rgba(255, 255, 255, .5); border-color: rgba(30, 27, 22, .45); } }
 .opt:active { transform: scale(.99); }
 .opt .box {
   width: 24px;
@@ -305,7 +303,7 @@ h1 em { font-style: normal; color: var(--sodium); display: block; font-size: 1.3
 .crt p { margin: 0; white-space: nowrap; overflow: hidden; animation: type .4s steps(28) both; }
 .crt .l2 { animation-delay: .35s; }
 .crt .l3 { animation-delay: .75s; }
-@keyframes type { from { width: 0; } to { width: 100%; } }
+@keyframes type { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
 .cursor { display: inline-block; width: .6em; height: 1em; margin-left: 4px; vertical-align: -2px; background: var(--crt); animation: blink .8s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 
