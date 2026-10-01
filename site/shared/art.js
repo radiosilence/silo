@@ -78,7 +78,7 @@ export function insignia(id, { colour, ink = "#1e1b16", code }) {
 }
 
 // A rubber stamp: double ring, curved legend and the department code across the middle.
-export function stamp(word) {
+export function stamp(word, legend = "OFFICE OF ASSIGNMENT") {
   const [ink, top, bot] = [uid("ink"), uid("arc"), uid("arc")];
   return `<svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
     <defs>
@@ -94,7 +94,7 @@ export function stamp(word) {
     <g filter="url(#${ink})" fill="#b1291f" stroke="#b1291f">
       <circle cx="80" cy="80" r="74" fill="none" stroke-width="5"/>
       <circle cx="80" cy="80" r="64" fill="none" stroke-width="1.6"/>
-      <text font-family="IBM Plex Mono, monospace" font-weight="600" font-size="11" letter-spacing="2.6" stroke="none"><textPath href="#${top}" startOffset="50%" text-anchor="middle">OFFICE OF ASSIGNMENT</textPath></text>
+      <text font-family="IBM Plex Mono, monospace" font-weight="600" font-size="11" letter-spacing="2.6" stroke="none"><textPath href="#${top}" startOffset="50%" text-anchor="middle">${legend}</textPath></text>
       <text font-family="IBM Plex Mono, monospace" font-weight="600" font-size="11" letter-spacing="3" stroke="none"><textPath href="#${bot}" startOffset="50%" text-anchor="middle">SILO 18</textPath></text>
       <rect x="6" y="62" width="148" height="36" fill="#b1291f" stroke="none"/>
       <text x="80" y="90" text-anchor="middle" font-family="Big Shoulders Stencil, Impact, sans-serif" font-weight="900" font-size="30" letter-spacing="2" fill="#ebe3cd" stroke="none">${word}</text>
@@ -158,16 +158,5 @@ export function cardBack() {
     <circle cx="85" cy="165" r="9" fill="#ffd583"/>
     <text x="150" y="400" text-anchor="middle" font-family="Big Shoulders Stencil, Impact, sans-serif" font-weight="900" font-size="54" letter-spacing="4" fill="#ebe3cd">SILO</text>
     <text x="150" y="436" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-weight="600" font-size="15" letter-spacing="6" fill="#f2a93b">TRUMPS</text>
-  </svg>`;
-}
-
-// A blank resident identity card, used where a game has no portrait yet.
-export function residentCard() {
-  return `<svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <rect width="120" height="150" rx="6" fill="#ebe3cd"/>
-    <rect x="10" y="10" width="100" height="98" fill="#f2a93b"/>
-    <path d="M60 30a17 19 0 1 1 0 38a17 19 0 1 1 0-38zM24 108c2-22 18-32 36-32s34 10 36 32z" fill="#1e1b16"/>
-    <path d="M10 118h70M10 130h50M10 140h60" stroke="#1e1b16" stroke-width="3" stroke-opacity=".5"/>
-    <rect x="86" y="116" width="24" height="26" fill="none" stroke="#b1291f" stroke-width="2"/>
   </svg>`;
 }

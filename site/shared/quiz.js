@@ -160,6 +160,7 @@ function radar(axes, stats) {
 
 export function run(quiz) {
   document.body.insertAdjacentHTML("afterbegin", markup(quiz));
+  document.body.dataset.quiz = quiz.id;
   muteButtons();
 
   let picks = [];
@@ -298,7 +299,7 @@ export function run(quiz) {
     $("#r-second").innerHTML = `
       <div class="mini" style="--dept:${s.colour}">${quiz.illustrate(r.second)}</div>
       <div><small>${quiz.labels.second} &middot; ${r.match}% fit</small><b>${s.name}</b><span>${s.badge}</span></div>`;
-    $("#r-stamp").innerHTML = stamp(quiz.labels.stamp);
+    $("#r-stamp").innerHTML = stamp(quiz.labels.stamp, quiz.labels.stampLegend);
     let h = 7;
     for (const c of encode(quiz, r)) h = (h * 31 + c.charCodeAt(0)) % 99991;
     $("#r-serial").textContent = `${quiz.form} · No. ${pad(h, 5)}`;
