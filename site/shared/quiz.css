@@ -513,6 +513,7 @@ h1 em { font-style: normal; color: var(--sodium); display: block; font-size: 1.3
   .notice-hero { padding: 30px 32px 24px; }
   .stamp { width: 150px; right: 40px; top: 70px; }
   .actions { flex-direction: row; }
+  .actions .btn { white-space: nowrap; padding-left: 14px; padding-right: 14px; }
   .actions > .btn { flex: 1.3; }
   .actions .row { flex: 2; }
 }
