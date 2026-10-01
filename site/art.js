@@ -97,7 +97,7 @@ export function stamp(word) {
 // Side view of the stair for the question screens: flights switching back and forth,
 // railings and lamps, tiled down a shaft that scrolls as you descend.
 export function stairwell() {
-  const W = 480, H = 360, steps = 20, run = W / steps, rise = 160 / steps;
+  const W = 960, H = 440, D = 200, steps = 30, run = W / steps, rise = D / steps;
   const flight = (y0, dir) => {
     let d = "";
     for (let i = 0; i < steps; i++) {
@@ -106,26 +106,26 @@ export function stairwell() {
       d += `${i ? "L" : "M"}${f(x)} ${f(y)}L${f(x + dir * run)} ${f(y)}L${f(x + dir * run)} ${f(y + rise)}`;
     }
     const x0 = dir > 0 ? 0 : W, x1 = dir > 0 ? W : 0;
-    const posts = Array.from({ length: 10 }, (_, i) => {
+    const posts = Array.from({ length: 20 }, (_, i) => {
       const x = dir > 0 ? i * 48 + 12 : W - i * 48 - 12;
-      const y = y0 + ((dir > 0 ? x : W - x) / W) * 160;
+      const y = y0 + ((dir > 0 ? x : W - x) / W) * D;
       return `M${f(x)} ${f(y - 34)}V${f(y)}`;
     }).join("");
     return `
-      <path d="${d}L${x1} ${y0 + 160 + 26}L${x0} ${y0 + 26}Z" fill="#1f1d19"/>
+      <path d="${d}L${x1} ${y0 + D + 26}L${x0} ${y0 + 26}Z" fill="#1f1d19"/>
       <path d="${d}" fill="none" stroke="#4a463d" stroke-width="2"/>
-      <path d="M${x0} ${y0 + 26}L${x1} ${y0 + 186}" stroke="#2c2a25" stroke-width="3"/>
-      <path d="M${x0} ${y0 - 34}L${x1} ${y0 + 126}" stroke="#6e6553" stroke-width="3"/>
+      <path d="M${x0} ${y0 + 26}L${x1} ${y0 + D + 26}" stroke="#2c2a25" stroke-width="3"/>
+      <path d="M${x0} ${y0 - 34}L${x1} ${y0 + D - 34}" stroke="#6e6553" stroke-width="3"/>
       <path d="${posts}" stroke="#3d3a33" stroke-width="2"/>`;
   };
   const lamp = (x, y) => `<circle cx="${x}" cy="${y}" r="46" fill="url(#sw-glow)"/><rect x="${x - 6}" y="${y - 3}" width="12" height="6" rx="2" fill="#ffd583"/>`;
   return `<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <radialGradient id="sw-glow"><stop offset="0" stop-color="#f2a93b" stop-opacity=".35"/><stop offset="1" stop-color="#f2a93b" stop-opacity="0"/></radialGradient>
-      <pattern id="sw" width="${W}" height="${H}" patternUnits="userSpaceOnUse" x="50%">
+      <pattern id="sw" width="${W}" height="${H}" patternUnits="userSpaceOnUse" x="50%" patternTransform="translate(-480 0)">
         ${flight(20, 1)}
-        ${flight(200, -1)}
-        ${lamp(60, 150)}${lamp(420, 330)}
+        ${flight(240, -1)}
+        ${lamp(300, 150)}${lamp(660, 370)}
       </pattern>
     </defs>
     <rect width="100%" height="100%" fill="url(#sw)"/>
