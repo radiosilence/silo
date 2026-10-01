@@ -1,59 +1,55 @@
 import { CHARACTERS, FACTIONS } from "../shared/characters.js";
 
 export const STATS = [
-  { key: "grit", label: "Grit", hint: "Stamina, nerve and staying power" },
-  { key: "ingenuity", label: "Ingenuity", hint: "Fixing, building and working things out" },
-  { key: "clearance", label: "Clearance", hint: "How much they are allowed to know" },
-  { key: "menace", label: "Menace", hint: "How frightened you ought to be" },
-  { key: "curiosity", label: "Curiosity", hint: "How badly they need to know" },
-  { key: "influence", label: "Influence", hint: "How many people would follow them" },
+  { key: "secrets", label: "Secrets", hint: "How much of the truth about the silo they know. Knowing is not encouraged." },
+  { key: "pact", label: "Pact", hint: "Devotion to the rules and the order they keep. Recitation on request." },
+  { key: "uprising", label: "Uprising", hint: "Appetite for tearing it all down. Judicial keeps a list." },
+  { key: "knowhow", label: "Know-how", hint: "Can they fix it, down deep or anywhere else." },
+  { key: "pull", label: "Pull", hint: "Sway with those up top, measured in favours owed." },
+  { key: "stair", label: "Stair Miles", hint: "How much of the silo their legs have covered. There are 144 levels and no lifts." },
+  { key: "cleanings", label: "Near Cleanings", hint: "How close they have come to being sent out to clean. Usually best kept low; here, higher wins." },
 ];
 
 export { FACTIONS };
 
-// p: [grit, ingenuity, clearance, menace, curiosity, influence], judged from what happens on screen.
+// p: [secrets, pact, uprising, knowhow, pull, stair, cleanings], judged from what happens on screen.
+// Season 3 characters are rated conservatively.
 const RAW = {
-  juliette: { p: [96, 90, 62, 72, 98, 86], blurb: "Mechanical's best engineer, brought up top to wear the sheriff's badge, and unable to leave a question unanswered." },
-  walker: { p: [38, 97, 35, 18, 72, 45], blurb: "An electrical engineer who has not left her workshop in years and can fix almost anything brought to her door." },
-  knox: { p: [95, 70, 30, 86, 40, 88], blurb: "Juliette's boss down deep, who will fight anyone from up top for the people of Mechanical." },
-  shirley: { p: [86, 72, 20, 46, 48, 56], blurb: "An engineer in Mechanical and Juliette's closest friend." },
-  cooper: { p: [66, 56, 10, 25, 58, 20], blurb: "A rookie engineer in the lower levels, and Juliette's shadow." },
-  teddy: { p: [72, 50, 8, 32, 35, 42], blurb: "A Mechanical worker and one of Juliette's colleagues, who found food for the lower levels when supplies were cut off." },
-
-  bernard: { p: [55, 86, 100, 91, 74, 95], blurb: "The head of IT, who decides what the rest of the silo is allowed to know." },
-  lukas: { p: [36, 86, 80, 10, 95, 35], blurb: "A systems analyst in IT who spends clear nights counting the stars." },
-  allison: { p: [44, 76, 45, 8, 97, 30], blurb: "Worked in IT, recovered files that had been deleted, and came to doubt what the screen showed." },
-
-  meadows: { p: [50, 55, 92, 76, 28, 86], blurb: "The head of Judicial, who enforces the Pact." },
-  sims: { p: [88, 62, 86, 98, 40, 76], blurb: "Head of security for Judicial, who keeps order by whatever means the job requires." },
-  camille: { p: [70, 76, 60, 72, 70, 62], blurb: "Robert Sims's wife and the mother of their son, and once a raider herself." },
-  amundsen: { p: [80, 30, 50, 88, 15, 42], blurb: "A high-ranking raider among the armed enforcers who work for Sims." },
-  trumbull: { p: [76, 25, 40, 84, 10, 22], blurb: "An enforcer for Judicial, loyal to Sims." },
-
-  holston: { p: [80, 55, 66, 60, 82, 80], blurb: "The sheriff of the silo and Allison's devoted husband." },
-  marnes: { p: [58, 40, 55, 40, 56, 56], blurb: "A deputy who works under Sheriff Holston and closely with Mayor Jahns." },
-  billings: { p: [64, 56, 70, 50, 66, 62], blurb: "A former Judicial administrator made chief deputy, and later sheriff." },
-  hank: { p: [70, 40, 35, 46, 52, 40], blurb: "A deputy who works in the lower levels." },
-  molly: { p: [60, 36, 35, 42, 42, 30], blurb: "A deputy who works in the mid-levels." },
-
-  jahns: { p: [76, 55, 86, 20, 60, 92], blurb: "The elected mayor, who walked all the way down to Mechanical to choose a new sheriff." },
-  pete: { p: [40, 60, 60, 10, 45, 56], blurb: "An obstetrician in the mid-upper levels, and Juliette's father." },
-  gloria: { p: [34, 30, 52, 15, 62, 28], blurb: "A paranoid woman who became the silo's fertility counsellor." },
-  carla: { p: [62, 66, 56, 36, 40, 76], blurb: "The head of Supply, and Martha Walker's ex-wife." },
-  kennedy: { p: [76, 70, 15, 56, 76, 30], blurb: "A maintenance worker and former smuggler of relics." },
-  george: { p: [30, 86, 30, 8, 99, 25], blurb: "A computer enthusiast who ran a repair shop, and whose death Juliette would not let lie." },
-  regina: { p: [56, 60, 25, 46, 72, 40], blurb: "A former relic dealer, and George's lover." },
-  danny: { p: [30, 93, 50, 40, 86, 20], blurb: "A criminal hacker who breaks into IT's security network." },
-  harwood: { p: [92, 56, 30, 62, 30, 66], blurb: "The head of the mining level." },
-
-  solo: { p: [90, 88, 72, 50, 60, 14], blurb: "The only living survivor of the rebellion in Silo 17." },
-  audrey: { p: [80, 62, 10, 66, 40, 60], blurb: "The leader of a group of young orphaned survivors in Silo 17." },
-
-  daniel: { p: [70, 76, 86, 50, 86, 80], blurb: "A United States congressman in the time before the silos." },
-  helen: { p: [66, 70, 40, 30, 99, 55], blurb: "An inquisitive journalist based in Washington, D.C." },
-  rosalind: { p: [55, 60, 96, 62, 50, 90], blurb: "A United States senator overseeing the congressional response." },
-  charlotte: { p: [88, 72, 60, 70, 56, 46], blurb: "Daniel's sister and a United States military pilot." },
-  stensen: { p: [40, 82, 98, 76, 52, 99], blurb: "The world's wealthiest person, who funds the construction of the silos." },
+  juliette: { p: [82, 8, 86, 95, 45, 95, 99], blurb: "Engineer, then sheriff, and the silo's foremost authority on what happens after you are sent out to clean." },
+  walker: { p: [60, 25, 55, 97, 20, 12, 10], blurb: "Can fix anything you bring her. You will have to bring it: she is not coming to you." },
+  knox: { p: [35, 18, 92, 86, 25, 72, 30], blurb: "Head of Mechanical. Opinions about up top available on request, and often without one." },
+  shirley: { p: [30, 30, 70, 80, 15, 55, 10], blurb: "An engineer in Mechanical and Juliette's closest friend, which is a full-time job in itself." },
+  cooper: { p: [20, 40, 50, 56, 5, 50, 10], blurb: "A rookie engineer and Juliette's shadow. Learning fast, mostly about trouble." },
+  teddy: { p: [10, 45, 50, 50, 6, 62, 5], blurb: "A Mechanical worker who turned up with food when the deliveries stopped. Remembered fondly for it." },
+  bernard: { p: [100, 95, 4, 72, 98, 40, 3], blurb: "Head of IT. Knows what is in the Legacy, what is outside and, quite possibly, what you did on Tuesday." },
+  lukas: { p: [85, 45, 40, 82, 60, 35, 15], blurb: "A systems analyst in IT who counts the stars on clear nights. There is no clause against it. Yet." },
+  allison: { p: [70, 25, 42, 72, 20, 30, 96], blurb: "Recovered some deleted files in IT, then said the words. Neither could be taken back." },
+  meadows: { p: [86, 96, 4, 30, 90, 20, 0], blurb: "Head of Judicial. Enforces the Pact, and has read it more times than anyone asked her to." },
+  sims: { p: [76, 92, 10, 46, 86, 62, 5], blurb: "Head of security for Judicial. Keeps order. Does not discuss method." },
+  camille: { p: [62, 60, 35, 56, 72, 40, 12], blurb: "Robert Sims's wife, once a raider, and nobody's fool in any room she chooses to be in." },
+  amundsen: { p: [25, 86, 8, 36, 50, 62, 5], blurb: "A high-ranking raider. If he is knocking, the relic has already been found." },
+  trumbull: { p: [20, 86, 8, 30, 40, 56, 5], blurb: "An enforcer for Judicial, loyal to Sims. Conversation not included." },
+  holston: { p: [62, 72, 40, 50, 76, 86, 95], blurb: "Sheriff of the silo and Allison's devoted husband, all the way to the airlock." },
+  marnes: { p: [40, 70, 20, 46, 56, 76, 10], blurb: "Holston's deputy, who works closely with Mayor Jahns and has climbed more stairs than he cares to count." },
+  billings: { p: [56, 76, 30, 50, 62, 60, 12], blurb: "A Judicial administrator who became chief deputy, then sheriff. Still fond of a form." },
+  hank: { p: [25, 60, 40, 40, 20, 72, 10], blurb: "A deputy in the lower levels, where the paperwork is lighter and the trouble heavier." },
+  molly: { p: [15, 72, 20, 36, 25, 66, 5], blurb: "A deputy in the mid-levels, equidistant from every kind of trouble." },
+  jahns: { p: [52, 70, 30, 40, 92, 92, 5], blurb: "The elected mayor, who walked all the way down to Mechanical to choose a sheriff. Took the stairs both ways." },
+  pete: { p: [30, 76, 15, 72, 56, 40, 5], blurb: "An obstetrician, Juliette's father, and a man who keeps his head down to a professional standard." },
+  gloria: { p: [40, 66, 15, 30, 40, 25, 5], blurb: "A paranoid woman who became the silo's fertility counsellor. Both qualifications are taken seriously." },
+  carla: { p: [40, 50, 60, 62, 56, 40, 10], blurb: "Head of Supply and Martha Walker's ex-wife. Knows where every spare part is, and who borrowed it." },
+  kennedy: { p: [46, 5, 76, 72, 10, 66, 40], blurb: "A maintenance worker and former relic smuggler. Judicial knows his file by heart." },
+  george: { p: [76, 10, 60, 92, 10, 50, 20], blurb: "Ran a repair shop and loved anything old. His death set Juliette asking questions, and everything followed." },
+  regina: { p: [46, 10, 56, 50, 20, 46, 15], blurb: "A former relic dealer and George's lover. Discreet in both capacities." },
+  danny: { p: [60, 5, 76, 92, 10, 30, 20], blurb: "A criminal hacker who breaks into IT's security network, which IT would rather you did not mention." },
+  harwood: { p: [25, 56, 40, 72, 30, 60, 5], blurb: "Head of the mining level, which is further from daylight than anywhere else. That is saying something in here." },
+  solo: { p: [90, 5, 50, 86, 5, 70, 5], blurb: "The only living survivor of the rebellion in Silo 17, and excellent company, by his own account." },
+  audrey: { p: [30, 10, 60, 46, 5, 50, 0], blurb: "Leads a group of young orphaned survivors in Silo 17. Strangers are not given the benefit of the doubt." },
+  daniel: { p: [80, 40, 50, 60, 85, 20, 0], blurb: "A United States congressman in the time before the silos. Stair Miles not yet required." },
+  helen: { p: [78, 20, 62, 50, 40, 20, 0], blurb: "An inquisitive journalist in Washington, D.C. Would have been sent out to clean within the week." },
+  rosalind: { p: [86, 80, 10, 36, 95, 10, 0], blurb: "A United States senator overseeing the congressional response. Has never queued for water in her life." },
+  charlotte: { p: [60, 60, 40, 82, 40, 30, 0], blurb: "Daniel's sister and a United States military pilot, from the days when going up was allowed." },
+  stensen: { p: [92, 50, 20, 60, 99, 5, 0], blurb: "The world's wealthiest person, who funds the construction of the silos. Pull: considerable." },
 };
 
 export const CARDS = Object.entries(RAW).map(([id, r], i) => {
