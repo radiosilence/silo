@@ -149,7 +149,7 @@ const quiz = {
   form: "Form 18-P",
   kicker: "Personnel Records",
   titleHtml: "Which resident <em>are you?</em>",
-  intro: "Ten thousand people live in the silo, and every one of them has a file. Answer twelve questions and the records office will find the one that matches yours.",
+  intro: "Ten thousand people live in the silo, and every one of them has a file. Answer sixteen questions and the records office will find the one that matches yours.",
   cutoff: "Safe to the end of season 3",
   disclaimer: "A non-commercial fan project. Not affiliated with or endorsed by Apple TV+, AMC Studios or Hugh Howey. All illustrations are original.",
   labels: {
@@ -208,7 +208,7 @@ const quiz = {
       ],
     },
     {
-      level: 14, where: "Level 14 · A gift",
+      level: 11, where: "Level 11 · A gift",
       text: "Someone you love has found you a relic. What do you hope it is?",
       options: [
         { text: "A book nobody has opened in centuries.", results: { bernard: 3, lukas: 1 }, axes: { curiosity: 2, order: 1 } },
@@ -218,7 +218,7 @@ const quiz = {
       ],
     },
     {
-      level: 27, where: "Level 27 · Up top",
+      level: 20, where: "Level 20 · Up top",
       text: "Someone important asks you to lie for them, just this once.",
       options: [
         { text: "Ask what's in it for you.", results: { camille: 3, kennedy: 1 }, axes: { ingenuity: 1, order: -1 } },
@@ -228,7 +228,17 @@ const quiz = {
       ],
     },
     {
-      level: 40, where: "Level 40 · Lights out",
+      level: 30, where: "Level 30 · A cleaning day",
+      text: "A cleaning has been announced. Where are you when the airlock opens?",
+      options: [
+        { text: "At the screen, watching every second of it.", results: { allison: 2, lukas: 1 }, axes: { curiosity: 2 } },
+        { text: "At work. You can't bear to watch.", results: { pete: 2, shirley: 1 }, axes: { heart: 1, grit: 1 } },
+        { text: "Beside the airlock, making sure it goes by the book.", results: { billings: 1, sims: 1, holston: 1 }, axes: { order: 2 } },
+        { text: "Somewhere you can't hear the crowd.", results: { walker: 2, solo: 1 }, axes: { heart: 1 } },
+      ],
+    },
+    {
+      level: 39, where: "Level 39 · Lights out",
       text: "The lights go out across the whole silo.",
       options: [
         { text: "You're already on the stairs with a toolbag.", results: { knox: 2, shirley: 2 }, axes: { grit: 2 } },
@@ -238,7 +248,7 @@ const quiz = {
       ],
     },
     {
-      level: 53, where: "Level 53 · A clear night",
+      level: 49, where: "Level 49 · A clear night",
       text: "The screen up top shows a rare clear night, and the stars are out. Where are you?",
       options: [
         { text: "In the cafeteria counting them, as you have for years.", results: { lukas: 3 }, axes: { curiosity: 2 } },
@@ -248,7 +258,7 @@ const quiz = {
       ],
     },
     {
-      level: 66, where: "Level 66 · A friend's flat",
+      level: 58, where: "Level 58 · A friend's flat",
       text: "You discover your closest friend has been hiding a relic.",
       options: [
         { text: "Help them hide it better.", results: { kennedy: 2, shirley: 1 }, axes: { order: -2, heart: 1 } },
@@ -258,7 +268,17 @@ const quiz = {
       ],
     },
     {
-      level: 79, where: "Level 79 · The mids",
+      level: 68, where: "Level 68 · Any door",
+      text: "You're given a key that will open any one door in the silo, once. Which door?",
+      options: [
+        { text: "The vault in IT.", results: { lukas: 2, juliette: 1 }, axes: { curiosity: 2 } },
+        { text: "The holding cell, for someone who doesn't belong in it.", results: { holston: 1, kennedy: 1, knox: 1 }, axes: { heart: 1, order: -1 } },
+        { text: "Your own front door, so it finally locks properly.", results: { walker: 1, solo: 1, pete: 1 }, axes: { order: 1 } },
+        { text: "None. You'd trade it; a key like that is worth a great deal.", results: { camille: 1, kennedy: 2 }, axes: { ingenuity: 2 } },
+      ],
+    },
+    {
+      level: 77, where: "Level 77 · The mids",
       text: "Supplies have stopped reaching the lower levels, and your people are hungry.",
       options: [
         { text: "Lead them up the stairs to take what you're owed.", results: { knox: 3 }, axes: { grit: 2, order: -2 } },
@@ -268,7 +288,7 @@ const quiz = {
       ],
     },
     {
-      level: 92, where: "Level 92 · An offer",
+      level: 87, where: "Level 87 · An offer",
       text: "You're offered a job you never asked for, a long way from home.",
       options: [
         { text: "Take it, on your own terms.", results: { juliette: 3 }, axes: { grit: 1, order: -1 } },
@@ -278,7 +298,7 @@ const quiz = {
       ],
     },
     {
-      level: 105, where: "Level 105 · Alone",
+      level: 96, where: "Level 96 · Alone",
       text: "You could be left completely alone for a year. How does that sound?",
       options: [
         { text: "Wonderful. You'd finally get some work done.", results: { solo: 3, walker: 1 }, axes: { ingenuity: 1 } },
@@ -288,7 +308,17 @@ const quiz = {
       ],
     },
     {
-      level: 118, where: "Level 118 · Someone you love",
+      level: 106, where: "Level 106 · Word on the stair",
+      text: "Word reaches you that someone you trust has been reporting on you to Judicial.",
+      options: [
+        { text: "Confront them.", results: { knox: 2, juliette: 1 }, axes: { grit: 2 } },
+        { text: "Feed them something false and see where it ends up.", results: { bernard: 2, camille: 1 }, axes: { ingenuity: 2 } },
+        { text: "Report them in turn.", results: { sims: 2, billings: 1 }, axes: { order: 2 } },
+        { text: "Let it go. Everyone reports to someone.", results: { pete: 1, jahns: 1, shirley: 1 }, axes: { heart: 1 } },
+      ],
+    },
+    {
+      level: 115, where: "Level 115 · Someone you love",
       text: "Someone you love is in danger because of what they've found out.",
       options: [
         { text: "Follow them, wherever it leads.", results: { holston: 3 }, axes: { heart: 3 } },
@@ -298,13 +328,23 @@ const quiz = {
       ],
     },
     {
-      level: 131, where: "Level 131 · A question",
+      level: 125, where: "Level 125 · A question",
       text: "What does the silo need most?",
       options: [
         { text: "Order. Without it we'd be dead within a week.", results: { bernard: 3, sims: 1 }, axes: { order: 3 } },
         { text: "The truth, whatever it costs.", results: { juliette: 2, allison: 1 }, axes: { curiosity: 2, order: -1 } },
         { text: "Kindness.", results: { jahns: 2, lukas: 1 }, axes: { heart: 2 } },
         { text: "Better maintenance.", results: { knox: 2, walker: 1 }, axes: { ingenuity: 1, grit: 1 } },
+      ],
+    },
+    {
+      level: 134, where: "Level 134 · A teacher",
+      text: "You can learn one thing from anyone in the silo. What is it?",
+      options: [
+        { text: "How to keep a generator alive.", results: { shirley: 2, walker: 1 }, axes: { ingenuity: 1, grit: 1 } },
+        { text: "How to read the files nobody is meant to read.", results: { lukas: 1, allison: 1, bernard: 1 }, axes: { curiosity: 2 } },
+        { text: "How to talk any room round.", results: { jahns: 2, camille: 1 }, axes: { heart: 1, ingenuity: 1 } },
+        { text: "How to survive entirely on your own.", results: { kennedy: 2, solo: 1 }, axes: { grit: 2 } },
       ],
     },
     {

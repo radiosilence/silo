@@ -52,4 +52,19 @@ export const EMBLEMS = {
     <path d="M8 34L28 14" stroke-width="3.5"/>
     <path d="M18 13h11v11" stroke-width="3.5"/>
     <rect x="34" y="40" width="18" height="14" rx="2" fill="${ink}"/>`,
+  mining: (ink) => `
+    <path d="M10 50L44 16" stroke-width="5"/>
+    <path d="M30 8C40 6 50 10 56 20C48 16 40 14 34 16Z" fill="${ink}"/>
+    <path d="M30 56L38 42L50 40L56 52L46 58Z" fill="${ink}" stroke-width="2"/>`,
+  maintenance: (ink) => `
+    <path d="M14 46L38 22" stroke-width="6"/>
+    <path d="M36 12a10 10 0 0 0 12 12l-4 4-8-8z" fill="${ink}" stroke-width="2"/>
+    <path d="M8 52l6-6" stroke-width="8"/>
+    <path d="M24 14V8M8 26h6M44 50h10M48 46v10" stroke-width="3"/>
+    <circle cx="48" cy="50" r="7" stroke-width="3"/>`,
+  mayor: (ink, colour) => `
+    <path d="M10 6C14 26 22 34 30 34C38 34 46 26 50 6" stroke-width="3" stroke-dasharray="4 3"/>
+    <circle cx="30" cy="42" r="14" fill="${ink}"/>
+    <circle cx="30" cy="42" r="8" fill="none" stroke="${colour}" stroke-width="2"/>
+    <circle cx="30" cy="42" r="3" fill="${colour}" stroke="none"/>`,
 };

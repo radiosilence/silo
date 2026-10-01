@@ -4,8 +4,8 @@ Unofficial games for the Apple TV+ series *Silo*, played in the browser.
 
 https://radiosilence.github.io/silo/
 
-- **Which job would you have?** (`site/role/`): twelve questions set inside Silo 18 assign you to one of eight departments: Mechanical, IT, Judicial, the Sheriff's Office, Supply, the Farms, Medical and the Porters.
-- **Which resident are you?** (`site/character/`): twelve questions matched against fifteen residents' personnel files, from Juliette Nichols to Solo.
+- **Which job would you have?** (`site/role/`): twenty-one questions assign you to one of eleven departments: Mechanical, IT, Judicial, the Sheriff's Office, the Mayor's Office, Supply, the Farms, Medical, the Porters, Maintenance and Mining.
+- **Which resident are you?** (`site/character/`): sixteen questions matched against fifteen residents' personnel files, from Juliette Nichols to Solo.
 - **Silo Trumps** (`site/trumps/`): a Top Trumps style game of thirty-five cards from Silo 18, Silo 17 and the world before the silos, played against Solo (random picks), Camille Sims (her card's highest number, with a quarter of picks random) or Bernard Holland (the stat that ranks highest against the whole deck).
 
 The same three games exist for [The Gentlemen](https://radiosilence.github.io/gentlemen/) and [Slow Horses](https://radiosilence.github.io/slowhorses/), with the same layout, so a visitor who knows one site knows the others.
@@ -26,7 +26,9 @@ The same three games exist for [The Gentlemen](https://radiosilence.github.io/ge
 
 **Card ratings.** The six stats (Grit, Ingenuity, Clearance, Menace, Curiosity, Influence) are judgements out of 100 based on what each character does on screen. Season 3 characters are rated more conservatively, and their blurbs say no more than the cast list does. Cards carry no season tags, because several characters' appearances across seasons could not be confirmed. Trumps was adapted from the same game on the Gentlemen site, so play, timing and opponents behave identically.
 
-**Balance.** Every result is reachable, and random answering in the job quiz lands roughly evenly across all eight departments (between about 10% and 16% each); in the character quiz each of the fifteen residents comes up between about 4% and 11% of the time.
+**Questions that don't give themselves away.** About a third of the questions are plainly about life in the silo; the rest ask about temperament through the silo's own texture (rationed paper, rumours, the Pact, relics, the stair at shift change) rather than about the work itself. Every answer spreads its weight over two or three results, so no single question decides the outcome and no answer is simply "the Mechanical one".
+
+**Balance.** Before shipping, 10,000 random answer sheets are simulated for each quiz. Every result must come up at least 60% and at most 160% as often as an even share, and each must be reachable by a deliberate path.
 
 ## Run locally
 
