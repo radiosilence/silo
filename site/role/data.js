@@ -2,15 +2,31 @@
 // Facts are kept to what the TV series has aired; see the README for the spoiler policy.
 // Pact clauses are invented in the Pact's register, not quoted from the show.
 
+import { insignia } from "../shared/art.js";
+
 const band = (v, low, mid, high) => (v < 34 ? low : v < 67 ? mid : high);
 
-export default {
+const quiz = {
   id: "jobs",
   form: "Form 18-J",
   kicker: "Office of Assignment",
   titleHtml: "Which job<br>would you have <em>in the Silo?</em>",
   intro: "Every resident shadows a trade. Answer twelve questions from life on the stairs and the Office of Assignment will place you, from the top of the silo to the bottom.",
   cutoff: "Safe to the end of season 3",
+  disclaimer: "A non-commercial fan project. Not affiliated with or endorsed by Apple TV+, AMC Studios or Hugh Howey. All illustrations are original.",
+  labels: {
+    begin: "Begin assignment",
+    processing: ["FILING FORM 18-J", "CROSS-REFERENCING DEPARTMENT ROLLS", "AWAITING STAMP"],
+    shared: "A resident shared their assignment with you.",
+    notice: "Notice of Assignment",
+    assignTo: "You are assigned to",
+    axes: "Your evaluation",
+    people: "You would work alongside",
+    second: "Secondary assignment",
+    stamp: "ASSIGNED",
+    share: "Share assignment",
+  },
+  illustrate: (id) => insignia(id, quiz.results[id]),
   shareText: (d) => `The Office of Assignment has placed me in ${d.name}. Which job would you have in the Silo?`,
 
   axes: [
@@ -39,9 +55,9 @@ export default {
   results: {
     mechanical: {
       name: "Mechanical", code: "MECH", colour: "#4f7fb3",
-      levels: "Down deep · the lowest levels",
-      role: "Keeping the generator turning, the pumps running and the lights on for everyone above you.",
-      life: [
+      badge: "Down deep · the lowest levels",
+      tagline: "Keeping the generator turning, the pumps running and the lights on for everyone above you.",
+      body: [
         "You live at the bottom of the silo, where the air is warm and smells of oil and the noise of the generator is something you only hear when it stops. Up top they call you grease-stained, and they would be in the dark within a day without you.",
         "Your shifts are long and your hands are never clean. Mechanical looks after its own, distrusts anything that comes down the stairs in a pressed uniform, and knows exactly how much the rest of the silo depends on it.",
       ],
@@ -51,14 +67,13 @@ export default {
         ["Shirley Campbell", "Engineer"],
         ["Martha Walker", "Electrical engineer, who fixes things in a workshop she does not leave"],
       ],
-      clause: "Pact clause · Machinery",
-      pact: "The machines of the silo are the life of the silo. Those who keep them shall be provided for, and shall not leave their post while the machines have need of them.",
+      quote: { title: "Pact clause · Machinery", text: "The machines of the silo are the life of the silo. Those who keep them shall be provided for, and shall not leave their post while the machines have need of them." },
     },
     it: {
       name: "IT", code: "IT", colour: "#a9b2b6",
-      levels: "Up top · near the servers",
-      role: "Keeping the silo's records, its systems and, if you rise far enough, its secrets.",
-      life: [
+      badge: "Up top · near the servers",
+      tagline: "Keeping the silo's records, its systems and, if you rise far enough, its secrets.",
+      body: [
         "You work in clean rooms near the top of the silo, among humming servers and people who speak quietly. The work is careful: data, records, systems that must never fail. Everyone in the silo depends on what you maintain, and almost nobody understands it.",
         "IT rewards patience and discretion. If you are good, someone senior may ask you to become their shadow, and from then on you will be told things you cannot repeat. You will learn that knowing the truth and being free are not the same thing.",
       ],
@@ -67,95 +82,89 @@ export default {
         ["Lukas Kyle", "Systems analyst, who spends his nights off counting the stars"],
         ["Allison Becker", "Worked in IT, and went looking through old files"],
       ],
-      clause: "Pact clause · Records",
-      pact: "The records of the silo shall be kept whole and kept close. What is not needed to be known shall not be sought, and what is found shall be returned to its keeper.",
+      quote: { title: "Pact clause · Records", text: "The records of the silo shall be kept whole and kept close. What is not needed to be known shall not be sought, and what is found shall be returned to its keeper." },
     },
     judicial: {
       name: "Judicial", code: "JUD", colour: "#2d2c2f", ink: "#ebe3cd",
-      levels: "Up top · the halls of the Pact",
-      role: "Interpreting the Pact, judging those who break it and keeping order across all 144 levels.",
-      life: [
+      badge: "Up top · the halls of the Pact",
+      tagline: "Interpreting the Pact, judging those who break it and keeping order across all 144 levels.",
+      body: [
         "Your office is up top, your clothes are pressed and people lower their voices when you walk past. Judicial reads the Pact, decides what it means and makes sure everyone else lives by it.",
         "You believe order is the only thing between ten thousand people and the end of everything. You will take statements, search flats for relics and sometimes do things that keep you awake. Most days you can tell yourself it was necessary.",
       ],
       people: [
+        ["Judge Meadows", "Head of Judicial"],
         ["Robert Sims", "Head of security for Judicial"],
         ["Camille Sims", "Once a Judicial raider"],
         ["Paul Billings", "A Judicial administrator before he joined the sheriff's office"],
       ],
-      clause: "Pact clause · Order",
-      pact: "No resident shall possess, trade or conceal a relic of the time before. Any found shall be surrendered to Judicial, and the finder shall make an account of it.",
+      quote: { title: "Pact clause · Order", text: "No resident shall possess, trade or conceal a relic of the time before. Any found shall be surrendered to Judicial, and the finder shall make an account of it." },
     },
     sheriff: {
       name: "Sheriff's Office", code: "SHERIFF", colour: "#c9a24a",
-      levels: "Level 1 · beside the airlock",
-      role: "Keeping the peace, investigating deaths and holding the cell that nobody wants to see used.",
-      life: [
+      badge: "Level 1 · beside the airlock",
+      tagline: "Keeping the peace, investigating deaths and holding the cell that nobody wants to see used.",
+      body: [
         "Your office is on the top level, next to the cafeteria and the airlock, and the cell in the back is where people wait after they say they want to go out. You carry the badge up and down every one of the 144 levels, and everybody knows your face.",
         "The job is answering to the Pact and to the people at the same time. When someone dies down deep and the report says it was an accident, you are the one who has to decide whether to believe it.",
       ],
       people: [
         ["Holston Becker", "Sheriff"],
-        ["Marnes", "Deputy to Holston"],
+        ["Sam Marnes", "Deputy to Holston"],
         ["Juliette Nichols", "Brought up from Mechanical to take the badge"],
-        ["Paul Billings", "Chief deputy"],
+        ["Paul Billings", "Chief deputy, later sheriff"],
       ],
-      clause: "Pact clause · The Peace",
-      pact: "The sheriff shall keep the peace of the silo, shall hold any resident who asks to go out, and shall see that the wish is granted according to the Pact.",
+      quote: { title: "Pact clause · The Peace", text: "The sheriff shall keep the peace of the silo, shall hold any resident who asks to go out, and shall see that the wish is granted according to the Pact." },
     },
     supply: {
       name: "Supply", code: "SUPPLY", colour: "#94683f",
-      levels: "The mids",
-      role: "Keeping track of every part, crate and bolt in a silo where nothing new can ever be made from scratch.",
-      life: [
+      badge: "The mids",
+      tagline: "Keeping track of every part, crate and bolt in a silo where nothing new can ever be made from scratch.",
+      body: [
         "You live in the mids and work among shelves that go back further than anyone can remember. Everything in the silo passes through your ledgers eventually: parts, cloth, wire, the things people need and the things they say they need.",
         "Supply runs on lists, chits and favours. You know who owes whom, which levels are hoarding and where the last spare gasket of its kind is kept. In a closed world, the person who knows where things are has a great deal of quiet power.",
       ],
       people: [
         ["Carla McLain", "Head of Supply"],
       ],
-      clause: "Pact clause · Stores",
-      pact: "Nothing of the silo shall be wasted. All that is worn shall be mended, all that is broken shall be returned, and all stores shall be counted and accounted for.",
+      quote: { title: "Pact clause · Stores", text: "Nothing of the silo shall be wasted. All that is worn shall be mended, all that is broken shall be returned, and all stores shall be counted and accounted for." },
     },
     farms: {
       name: "The Farms", code: "FARMS", colour: "#62893d",
-      levels: "Farm levels, including 122",
-      role: "Growing the food that feeds ten thousand people under grow lights that must never go out.",
-      life: [
+      badge: "Farm levels, including 122",
+      tagline: "Growing the food that feeds ten thousand people under grow lights that must never go out.",
+      body: [
         "You work under the grow lights, where it is warmer and greener than anywhere else in the silo and smells of soil instead of rust. The days follow the crops: planting, tending, harvesting, starting again.",
         "Nobody writes songs about farmers, but everybody eats. When the levels fall out with each other, food is the first thing that gets fought over, and the farmers' market on 122 is where you will hear what people are really thinking.",
       ],
       people: [],
       nobody: "No famous names here. The people who feed the silo rarely make the story, and they prefer it that way.",
-      clause: "Pact clause · The Harvest",
-      pact: "The farms shall feed every level of the silo alike. No harvest shall be withheld from any resident, and the lights of the farms shall be the last to go dark.",
+      quote: { title: "Pact clause · The Harvest", text: "The farms shall feed every level of the silo alike. No harvest shall be withheld from any resident, and the lights of the farms shall be the last to go dark." },
     },
     medical: {
       name: "Medical", code: "MED", colour: "#e7e1d3",
-      levels: "The mid-upper levels",
-      role: "Treating the sick, setting bones and bringing each new life into the silo.",
-      life: [
+      badge: "The mid-upper levels",
+      tagline: "Treating the sick, setting bones and bringing each new life into the silo.",
+      body: [
         "You live in the mid-upper levels, where doctors are respected and the flats are comfortable. You have seen the whole silo at its most frightened, and you know more about everyone's private lives than anybody else.",
         "Births are permitted, not chosen, and your work is bound up in that. Most days you are the person people come to when something has gone wrong, and you do not have the luxury of looking away.",
       ],
       people: [
         ["Dr Pete Nichols", "Physician and obstetrician, and Juliette's father"],
       ],
-      clause: "Pact clause · Life",
-      pact: "Every life in the silo is held in trust. The healer shall treat any resident without regard to level, and shall bring no child into the silo without leave.",
+      quote: { title: "Pact clause · Life", text: "Every life in the silo is held in trust. The healer shall treat any resident without regard to level, and shall bring no child into the silo without leave." },
     },
     porters: {
       name: "Porters", code: "PORTER", colour: "#d6812e",
-      levels: "All 144 levels",
-      role: "Carrying goods, food and messages up and down the stair, all day and all night.",
-      life: [
+      badge: "All 144 levels",
+      tagline: "Carrying goods, food and messages up and down the stair, all day and all night.",
+      body: [
         "There are no lifts in the silo, so everything moves on someone's back, and that someone is you. You know every landing on the stair, every shortcut and every face, and you have legs like steel cable.",
         "Porters go where most residents never go. You carry notes between people who cannot otherwise speak and hear every rumour on the way. When the deliveries stop, the whole silo feels it within a day.",
       ],
       people: [],
       nobody: "The show's porters go mostly unnamed. You will have passed every one of the main characters on the stairs, though.",
-      clause: "Pact clause · The Stair",
-      pact: "The stair belongs to the whole silo. The porter shall have passage on every level, and no resident shall hinder a load in transit.",
+      quote: { title: "Pact clause · The Stair", text: "The stair belongs to the whole silo. The porter shall have passage on every level, and no resident shall hinder a load in transit." },
     },
   },
 
@@ -282,3 +291,5 @@ export default {
     },
   ],
 };
+
+export default quiz;

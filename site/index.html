@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#14130f">
-  <meta name="description" content="An unofficial fan-made Silo personality quiz. Twelve questions from life on the stairs decide which department of Silo 18 takes you.">
-  <title>Silo Job Assignment</title>
+  <meta name="description" content="Unofficial fan games for Silo: a job assignment quiz, a character quiz and a Top Trumps style card game.">
+  <title>Silo: Fan Games</title>
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Which job would you have in the Silo?">
-  <meta property="og:description" content="An unofficial fan-made Silo personality quiz. Twelve questions from life on the stairs decide which department of Silo 18 takes you.">
-  <meta property="og:url" content="https://radiosilence.github.io/silo-quiz/">
-  <meta property="og:image" content="https://radiosilence.github.io/silo-quiz/og.jpg">
+  <meta property="og:title" content="Silo: Fan Games">
+  <meta property="og:description" content="Unofficial fan games for Silo: a job assignment quiz, a character quiz and a Top Trumps style card game.">
+  <meta property="og:url" content="https://radiosilence.github.io/silo/">
+  <meta property="og:image" content="https://radiosilence.github.io/silo/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
@@ -19,113 +19,55 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil:wght@700;900&family=Barlow+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="shared/theme.css">
+  <link rel="stylesheet" href="hub.css">
 </head>
 <body>
   <div class="lights" aria-hidden="true"></div>
-
-  <main id="title" class="screen">
-    <div class="title-art" id="title-art" aria-hidden="true"></div>
-    <div class="title-inner">
-      <p class="kicker" id="kicker"></p>
-      <h1></h1>
-      <div class="form">
-        <div class="form-head"><span id="form-no"></span><span class="cutoff" id="cutoff"></span></div>
-        <p id="intro"></p>
-        <ul class="form-meta">
-          <li><b id="q-count"></b> questions</li>
-          <li><b>4</b> answers each</li>
-          <li>Results are final</li>
-        </ul>
-        <button class="btn primary" id="begin">Begin assignment</button>
-        <a class="previous" id="previous" hidden></a>
-      </div>
-      <p class="disclaimer">An unofficial, non-commercial fan project. Not affiliated with or endorsed by Apple TV+, AMC Studios or Hugh Howey. All illustrations are original. Character and place names belong to their owners.</p>
-    </div>
-    <button class="icon-btn mute corner" aria-label="Sound"></button>
-  </main>
-
-  <section id="quiz" class="screen" hidden>
-    <div class="shaft" id="shaft" aria-hidden="true"><div class="treads" id="treads"></div></div>
-    <header class="qbar">
-      <button class="icon-btn" id="quit" aria-label="Abandon the form">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-      </button>
-      <div class="depth">
-        <span class="depth-label">Level</span>
-        <span class="depth-num" id="level">001</span>
-      </div>
-      <div class="gauge" id="gauge"><div class="gauge-ticks" id="gauge-ticks"></div><span class="q-num" id="q-num"></span></div>
-      <button class="icon-btn mute" aria-label="Sound"></button>
+  <div class="hub-art" id="hub-art" aria-hidden="true"></div>
+  <main class="hub">
+    <header class="hub-head">
+      <p class="kicker">Unofficial fan games</p>
+      <h1>Silo</h1>
+      <p class="tagline">Three ways to pass a shift on the stairs: a job assignment, a personnel file and a game of cards.</p>
+      <p class="cutoff">Safe up to the end of season 3</p>
     </header>
-    <div class="deck" id="deck"></div>
-    <footer class="qfoot">
-      <button class="link-btn" id="back">&larr; Previous question</button>
+
+    <nav class="tiles" aria-label="Games">
+      <a class="tile soon" aria-disabled="true" style="--i:0">
+        <div class="tile-art" data-art="trumps"></div>
+        <div class="tile-text">
+          <p class="tile-form">Recreation</p>
+          <h2>Silo Trumps</h2>
+          <p>Residents of Silo 18 rated on six counts and played by Top Trumps rules against the computer.</p>
+          <span class="tile-go">Coming soon</span>
+        </div>
+      </a>
+      <a class="tile" href="role/" style="--i:1">
+        <div class="tile-art" data-art="role"></div>
+        <div class="tile-text">
+          <p class="tile-form">Form 18-J</p>
+          <h2>Which job would you have?</h2>
+          <p>Twelve questions from life in the silo decide which department takes you, from IT up top to Mechanical down deep.</p>
+          <span class="tile-go">Begin assignment</span>
+        </div>
+      </a>
+      <a class="tile soon" aria-disabled="true" style="--i:2">
+        <div class="tile-art" data-art="character"></div>
+        <div class="tile-text">
+          <p class="tile-form">Form 18-P</p>
+          <h2>Which resident are you?</h2>
+          <p>Sheriff, engineer, head of IT or relic smuggler. Your answers are matched against the silo's personnel files.</p>
+          <span class="tile-go">Coming soon</span>
+        </div>
+      </a>
+    </nav>
+
+    <footer class="hub-foot">
+      <p class="siblings">More fan games: <a href="https://radiosilence.github.io/gentlemen/">The Gentlemen</a> · <b aria-current="page">Silo</b> · <a href="https://radiosilence.github.io/slowhorses/">Slow Horses</a></p>
+      <p class="disclaimer">A non-commercial fan project. Not affiliated with or endorsed by Apple TV+, AMC Studios, Hugh Howey or Winning Moves (Top Trumps). Character names belong to their owners; all illustrations are original.</p>
     </footer>
-    <div class="processing" id="processing" hidden>
-      <div class="crt">
-        <p>&gt; FILING FORM 18-J<span class="cursor"></span></p>
-        <p class="l2">&gt; CROSS-REFERENCING DEPARTMENT ROLLS</p>
-        <p class="l3">&gt; AWAITING STAMP</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="result" class="screen" hidden>
-    <div class="result-inner">
-      <p class="shared-note" id="r-shared" hidden>A resident shared their assignment with you.</p>
-      <article class="notice" id="notice">
-        <header class="notice-head">
-          <span>Notice of Assignment</span>
-          <span id="r-serial"></span>
-        </header>
-        <div class="notice-hero">
-          <div class="insignia" id="r-insignia"></div>
-          <div class="stamp" id="r-stamp" aria-hidden="true"></div>
-          <p class="assign-to">You are assigned to</p>
-          <h2 id="r-name"></h2>
-          <p class="levels" id="r-levels"></p>
-          <p class="role" id="r-role"></p>
-        </div>
-
-        <section class="block life" id="r-life"></section>
-
-        <section class="block pact">
-          <h3 id="r-clause"></h3>
-          <blockquote id="r-pact"></blockquote>
-        </section>
-
-        <section class="block">
-          <h3>Your evaluation</h3>
-          <div class="radar-wrap" id="r-radar"></div>
-          <ul class="axes" id="r-axes"></ul>
-        </section>
-
-        <section class="block">
-          <h3>You would work alongside</h3>
-          <ul class="people" id="r-people"></ul>
-        </section>
-
-        <section class="block second" id="r-second"></section>
-      </article>
-
-      <div class="actions">
-        <button class="btn primary" id="share">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>
-          Share assignment
-        </button>
-        <div class="row">
-          <button class="btn" id="retake">Take it again</button>
-          <button class="btn" id="to-title">Title</button>
-        </div>
-      </div>
-      <p class="disclaimer">An unofficial fan project. Not affiliated with or endorsed by Apple TV+, AMC Studios or Hugh Howey.</p>
-    </div>
-    <button class="icon-btn mute corner" aria-label="Sound"></button>
-  </section>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-  <script type="module" src="app.js"></script>
+  </main>
+  <script type="module" src="hub.js"></script>
 </body>
 </html>
