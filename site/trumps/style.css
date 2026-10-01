@@ -184,7 +184,6 @@ h1 em { font-style: normal; color: var(--sodium); display: block; font-size: 1.1
   transform-origin: 0 0;
   perspective: 1400px;
   transition: transform var(--dur, .7s) var(--ease);
-  will-change: transform;
 }
 .card-inner {
   position: absolute;

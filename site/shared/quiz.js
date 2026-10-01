@@ -332,7 +332,7 @@ export function run(quiz) {
     $("#r-axes").innerHTML = quiz.axes.map((a, i) => `<li><b>${a.label}</b> ${a.describe(r.stats[i])}</li>`).join("");
     $("#r-second").innerHTML = `
       <div class="mini" style="--dept:${s.colour}">${quiz.illustrate(r.second)}</div>
-      <div><small>${quiz.labels.second} &middot; ${r.match}% fit</small><b>${s.name}</b><span>${s.badge}</span></div>`;
+      <div><small>${quiz.labels.second} &middot; ${r.match >= 85 ? "a close second" : r.match >= 60 ? "runner-up" : "a distant second"}</small><b>${s.name}</b><span>${s.badge}</span></div>`;
     $("#r-stamp").innerHTML = stamp(quiz.labels.stamp, quiz.labels.stampLegend);
     let h = 7;
     for (const c of encode(quiz, r)) h = (h * 31 + c.charCodeAt(0)) % 99991;
