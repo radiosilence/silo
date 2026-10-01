@@ -218,13 +218,13 @@ const quiz = {
       ],
     },
     {
-      level: 20, where: "Level 20 · Up top",
-      text: "Someone important asks you to lie for them, just this once.",
+      level: 20, where: "Level 20 · The Pact",
+      text: "You may add one clause to the Pact. What does it say?",
       options: [
-        { text: "Ask what's in it for you.", results: { camille: 3, kennedy: 1 }, axes: { ingenuity: 1, order: -1 } },
-        { text: "Refuse, politely and finally.", results: { jahns: 3, holston: 1 }, axes: { heart: 1, order: 1 } },
-        { text: "Do it. They must have their reasons.", results: { sims: 3, billings: 1 }, axes: { order: 3 } },
-        { text: "Agree, then find out why they need it.", results: { juliette: 2, lukas: 1 }, axes: { curiosity: 3 } },
+        { text: "One with a loophole that only you know about.", results: { camille: 3, kennedy: 1 }, axes: { ingenuity: 1, order: -1 } },
+        { text: "Every level shall be fed alike, whoever is in charge.", results: { jahns: 3, holston: 1 }, axes: { heart: 1, order: 1 } },
+        { text: "Nothing. The Pact is complete as it stands.", results: { sims: 3, billings: 1 }, axes: { order: 3 } },
+        { text: "No one shall be held in the cell for asking a question.", results: { juliette: 2, lukas: 1 }, axes: { curiosity: 3 } },
       ],
     },
     {
@@ -239,7 +239,7 @@ const quiz = {
     },
     {
       level: 39, where: "Level 39 · Lights out",
-      text: "The lights go out across the whole silo.",
+      text: "The generator trips and every light in the silo goes out.",
       options: [
         { text: "You're already on the stairs with a toolbag.", results: { knox: 2, shirley: 2 }, axes: { grit: 2 } },
         { text: "You have a spare part for exactly this in your workshop.", results: { walker: 2, solo: 1 }, axes: { ingenuity: 3 } },
@@ -289,7 +289,7 @@ const quiz = {
     },
     {
       level: 87, where: "Level 87 · An offer",
-      text: "You're offered a job you never asked for, a long way from home.",
+      text: "The mayor has walked all the way down the stair to offer you a job you never asked for.",
       options: [
         { text: "Take it, on your own terms.", results: { juliette: 3 }, axes: { grit: 1, order: -1 } },
         { text: "Take it, and do it by the book.", results: { billings: 3 }, axes: { order: 2 } },
@@ -298,8 +298,8 @@ const quiz = {
       ],
     },
     {
-      level: 96, where: "Level 96 · Alone",
-      text: "You could be left completely alone for a year. How does that sound?",
+      level: 96, where: "Level 96 · An empty silo",
+      text: "You could have a whole empty silo to yourself, its stores still full. How does that sound?",
       options: [
         { text: "Wonderful. You'd finally get some work done.", results: { solo: 3, walker: 1 }, axes: { ingenuity: 1 } },
         { text: "Awful. You need people around you.", results: { jahns: 1, holston: 1, allison: 1 }, axes: { heart: 2 } },
@@ -319,7 +319,7 @@ const quiz = {
     },
     {
       level: 115, where: "Level 115 · Someone you love",
-      text: "Someone you love is in danger because of what they've found out.",
+      text: "The person you love has started asking questions about the outside.",
       options: [
         { text: "Follow them, wherever it leads.", results: { holston: 3 }, axes: { heart: 3 } },
         { text: "Make them stop asking questions, for their own good.", results: { pete: 2, sims: 1 }, axes: { order: 2 } },
@@ -328,18 +328,18 @@ const quiz = {
       ],
     },
     {
-      level: 125, where: "Level 125 · A question",
-      text: "What does the silo need most?",
+      level: 125, where: "Level 125 · The stair wall",
+      text: "You get one line, painted on the wall of the stair. What does it say?",
       options: [
-        { text: "Order. Without it we'd be dead within a week.", results: { bernard: 3, sims: 1 }, axes: { order: 3 } },
-        { text: "The truth, whatever it costs.", results: { juliette: 2, allison: 1 }, axes: { curiosity: 2, order: -1 } },
-        { text: "Kindness.", results: { jahns: 2, lukas: 1 }, axes: { heart: 2 } },
-        { text: "Better maintenance.", results: { knox: 2, walker: 1 }, axes: { ingenuity: 1, grit: 1 } },
+        { text: "\u201cOrder keeps us alive.\u201d", results: { bernard: 3, sims: 1 }, axes: { order: 3 } },
+        { text: "\u201cWe deserve the truth.\u201d", results: { juliette: 2, allison: 1 }, axes: { curiosity: 2, order: -1 } },
+        { text: "\u201cLook after each other.\u201d", results: { jahns: 2, lukas: 1 }, axes: { heart: 2 } },
+        { text: "\u201cKeep the generator turning.\u201d", results: { knox: 2, walker: 1 }, axes: { ingenuity: 1, grit: 1 } },
       ],
     },
     {
       level: 134, where: "Level 134 · A teacher",
-      text: "You can learn one thing from anyone in the silo. What is it?",
+      text: "You may shadow anyone in the silo for a week. What do you want to learn?",
       options: [
         { text: "How to keep a generator alive.", results: { shirley: 2, walker: 1 }, axes: { ingenuity: 1, grit: 1 } },
         { text: "How to read the files nobody is meant to read.", results: { lukas: 1, allison: 1, bernard: 1 }, axes: { curiosity: 2 } },
