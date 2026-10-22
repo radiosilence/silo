@@ -1,3 +1,11 @@
+[tools]
+actionlint = "1.7.12"
+shellcheck = "0.11.0"
+
 [tasks.serve]
 description = "Serve the site on :8767"
 run = "python3 -m http.server 8767 -d site"
+
+[tasks.actionlint]
+description = "Lint GitHub Actions workflows"
+run = "actionlint"
